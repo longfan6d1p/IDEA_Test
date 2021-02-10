@@ -5,6 +5,8 @@
 
 <!--就是在这里面写mybatis的核心配置
     就是在这里面写mybatis的核心配置
+    就是在这里面写mybatis的核心配置
+    就是在这里面写mybatis的核心配置
 包含： 如何连接数据库，以及xxxDao.xml映射文件都有哪些？-->
 <configuration>
     <!--1.导入外部的properties文件-->
