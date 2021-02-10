@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--就是在这里面写mybatis的核心配置
+    就是在这里面写mybatis的核心配置
+包含： 如何连接数据库，以及xxxDao.xml映射文件都有哪些？-->
+<configuration>
+    <!--1.导入外部的properties文件-->
+    <properties resource="db.properties"/>
+    <!--0. 设置简化的类型名-->
+    <typeAliases>
+        <!--第一种：给某个类 ，比如：给user类起别名，叫做u-->
+       <!-- <typeAlias type="com.itheima.bean.User" alias="u"/>-->
+        <!--第二种：给这个包下的所有类起别名，别名就是类的名字，大小写都可以-->
+        <package name="com.itheima.pojo"/>
+    </typeAliases>
+    <!--环境的配置 决定使用开发的这一套配置-->
+    <environments default="development">
+        <!--开发的这一套配置的细节-->
+        <environment id="development">
+            <!--事务的管理-->
+            <transactionManager type="JDBC"/>
+            <!--使用连接池-->
+            <!--<dataSource type="POOLED"> 使用mybatis内置的连接池-->
+            <!--<dataSource type="UNPOOLED"> 没有用连接池-->
+            <!--<dataSource type="JNDI">  一般不用，它要配合服务器使用-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--还要告诉mybatis 有哪些映射文件-->
+    <mappers>
+        <!--以下的三种配置选一种即可-->
+
+        <!--第一种： 直接指定映射文件的位置-->
+      <!--  <mapper resource="com/itheima/dao/UserDao.xml"/>-->
+
+        <!--第二种： 使用class指定接口 ,要想使用这种，那么他们必须要一样的路径和名字-->
+       <!-- <mapper class="com.itheima.dao.UserDao"/>-->
+
+        <!--第三种配置： 批量配置，只要指定包名即可，包下的所有配置文件都可以生效，不用一个一个的单独配置了-->
+        <package name="com.itheima.dao"/>
+    </mappers>
+</configuration>
